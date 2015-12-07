@@ -18,7 +18,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     </style>
     <div>
-      <input type="checkbox" on-change="_onCheckboxChange"/>
+      <input type="checkbox" checked="{{state::change}}"/>
     </div>
   </template>
   <script>
@@ -31,18 +31,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       properties: {
         state: {
           type: Boolean,
-          value: false,
-          notify: true,
-          observer: '_onStateChange'
+          notify: true
         }
-      },
-      
-      _onStateChange: function () {
-        this.querySelector('input').checked = this.state;
-      },
-      
-      _onCheckboxChange: function () {
-        this.state = this.querySelector('input').checked;
       }
     });
   })();
