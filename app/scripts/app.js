@@ -13,19 +13,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 	var app = document.getElementById('app');
 
 	app.addEventListener('dom-change', function () {
-
-		var roomList = document.querySelector('room-list');
-
-		window.addEventListener('WebComponentsReady', function() {
-			roomList.rooms = [
-				{type: 'toilet', label: 'frontend szoba - bal', inuse: false},
-				{type: 'toilet', label: 'frontend szoba - jobb', inuse: false},
-				{type: 'meeting', label: 'az egyetlnunk', inuse: true},
-				{type: 'toilet', label: 'editor szoba - zuhany', inuse: true},
-				{type: 'toilet', label: 'editor szoba - kicsi', inuse: false},
-				{type: 'meeting', label: 'a jovobeli', inuse: false}
-			];
-		});
+		window.addEventListener('WebComponentsReady', function() {});
 	});
 
 })(document);

@@ -63,6 +63,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <body unresolved class="fullbleed layout vertical">
 
   <template id="app" is="dom-bind">
+    
+    <firebase-collection
+          order-by-child="label"
+          limit-to-first="10"
+          location="https://intense-fire-6170.firebaseio.com/slozymer"
+          data="{{rooms}}"></firebase-collection>
+
     <room-list rooms={{rooms}}></room-list>
   </template>
 
