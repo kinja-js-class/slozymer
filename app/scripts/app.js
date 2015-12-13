@@ -10,18 +10,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 (function(document) {
 	'use strict';
 
-	var roomList = document.querySelector('room-list');
+	var app = document.getElementById('app');
 
-	// See https://github.com/Polymer/polymer/issues/1381
-	window.addEventListener('WebComponentsReady', function() {
-		roomList.rooms = JSON.parse(JSON.stringify([
-			{type: "toilet", label: "frontend szoba - bal", inuse: false},
-			{type: "toilet", label: "frontend szoba - jobb", inuse: false},
-			{type: "meeting", label: "az egyetlnunk", inuse: true},
-			{type: "toilet", label: "editor szoba - zuhany", inuse: true},
-			{type: "toilet", label: "editor szoba - kicsi", inuse: false},
-			{type: "meeting", label: "a jovobeli", inuse: false}
-		]));
+	app.addEventListener('dom-change', function () {
+
+		var roomList = document.querySelector('room-list');
+
+		window.addEventListener('WebComponentsReady', function() {
+			roomList.rooms = [
+				{type: 'toilet', label: 'frontend szoba - bal', inuse: false},
+				{type: 'toilet', label: 'frontend szoba - jobb', inuse: false},
+				{type: 'meeting', label: 'az egyetlnunk', inuse: true},
+				{type: 'toilet', label: 'editor szoba - zuhany', inuse: true},
+				{type: 'toilet', label: 'editor szoba - kicsi', inuse: false},
+				{type: 'meeting', label: 'a jovobeli', inuse: false}
+			];
+		});
 	});
 
 })(document);
