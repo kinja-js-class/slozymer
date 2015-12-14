@@ -18,9 +18,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     </style>
     <div>
-      <h2>RoomRooms</h2>
+      <content id="aboveFold"></content>
 
-      <template is="dom-repeat" items="{{rooms}}" as="room">
+      <template is="dom-repeat" items="{{rooms}}" as="room" filter="_isAboveFold">
 
         <template is="dom-if" if="{{_isOfType(room.type, 'toilet')}}">
           <room-toilet label="{{room.label}}" inuse={{room.inuse}}></room-toilet>
@@ -47,6 +47,35 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           value: [],
           notify: true
         }
+      },
+
+      _isAboveFold: function (item) {
+        var asd = this.aboveFoldRooms.filter(function (room) {
+          return room.id == item.__firebaseKey__;
+        });
+        return !asd.length;
+      },
+
+      ready: function () {
+        let children = this.getContentChildren()
+          .filter(function (element) {
+            return element.nodeName.toLowerCase() === 'room-toilet' || element.nodeName.toLowerCase() === 'room-meeting';
+          })
+          .map(function (element) {
+            element.addEventListener('changed:inuse', function (event) {
+              // TODO!
+            }.bind(this));
+            return element;
+          }.bind(this))
+          .map(function (element) {
+            return {
+              id: 0,
+              label: element.getAttribute('label'),
+              inuse: !!element.getAttribute('inuse'),
+            }
+          });
+
+        this.aboveFoldRooms = children;
       },
 
       _isOfType: function (type, matchingType) {

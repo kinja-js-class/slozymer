@@ -62,8 +62,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <body unresolved class="fullbleed layout vertical">
 
   <template id="app" is="dom-bind">
-    <firebase-collection location="https://slozymer.firebaseio.com/rooms" data="{{rooms}}"></firebase-collection>
-    <room-list rooms={{rooms}}></room-list>
+    <firebase-collection
+      log="log"
+      location="https://slozymer.firebaseio.com/rooms"
+      data="{{rooms}}"></firebase-collection>
+    <room-list rooms={{rooms}}>
+      <room-toilet id="0" label="frontend szoba -- bal"></room-toilet>
+    </room-list>
   </template>
 
   <!-- build:js scripts/app.js -->
